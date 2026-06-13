@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Map - Countries I've Visited</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <link rel="stylesheet" href="styles-travel-map.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation Buttons -->
+        <div class="page-nav">
+            <a href="intro.html" class="nav-button secondary">← Home</a>
+            <a href="projects.html" class="nav-button secondary">💼 Projects</a>
+            <button class="nav-button" onclick="alert('More pages coming soon!')">📄 Portfolio</button>
+        </div>
+
+        <!-- Header -->
+        <header>
+            <h1>🌍 My Travel Map</h1>
+            <p>Countries I've Visited Around the World</p>
+        </header>
+
+        <!-- Stats -->
+        <div class="stats">
+            <div class="stat-box">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Countries Visited</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">12</div>
+                <div class="stat-label">Cities Explored</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">45</div>
+                <div class="stat-label">Photos Shared</div>
+            </div>
+        </div>
+
+        <!-- Map Section -->
+        <div class="map-section">
+            <h2>World Map</h2>
+            <div id="map"></div>
+            <div class="map-legend">
+                <div class="legend-item">
+                    <div class="legend-color visited"></div>
+                    <span>Countries Visited</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color not-visited"></div>
+                    <span>Countries Not Visited</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Countries Section -->
+        <div class="countries-section">
+            <h2>Countries & Photos</h2>
+            <div class="countries-grid">
+                <!-- Country Card 1 -->
+                <div class="country-card">
+                    <div class="country-image">
+                        🇯🇵
+                    </div>
+                    <div class="country-info">
+                        <div class="country-name">Japan</div>
+                        <div class="visit-date">Visited: March 2023</div>
+                        <div class="country-description">
+                            Amazing experience exploring the blend of tradition and modernity. Cherry blossoms were beautiful!
+                        </div>
+                        <div class="photo-gallery">
+                            <div class="gallery-thumb">🖼️</div>
+                            <div class="gallery-thumb">🖼️</div>
+                            <div class="gallery-thumb">🖼️</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Country Card 2 -->
+                <div class="country-card">
+                    <div class="country-image">
+                        🇫🇷
+                    </div>
+                    <div class="country-info">
+                        <div class="country-name">France</div>
+                        <div class="visit-date">Visited: June 2022</div>
+                        <div class="country-description">
+                            The City of Light lived up to its name. From the Eiffel Tower to charming cafes, unforgettable memories.
+                        </div>
+                        <div class="photo-gallery">
+                            <div class="gallery-thumb">🖼️</div>
+                            <div class="gallery-thumb">🖼️</div>
+                            <div class="gallery-thumb">🖼️</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Country Card 3 -->
+                <div class="country-card">
+                    <div class="country-image">
+                        🇬🇧
+                    </div>
+                    <div class="country-info">
+                        <div class="country-name">United Kingdom</div>
+                        <div class="visit-date">Visited: September 2021</div>
+                        <div class="country-description">
+                            London was fantastic! Big Ben, British Museum, and great tea everywhere. Must visit again.
+                        </div>
+                        <div class="photo-gallery">
+                            <div class="gallery-thumb">🖼️</div>
+                            <div class="gallery-thumb">🖼️</div>
+                            <div class="gallery-thumb">🖼️</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Country Card 4 -->
+                <div class="country-card">
+                    <div class="country-image">
+                        🇹🇭
+                    </div>
+                    <div class="country-info">
+                        <div class="country-name">Thailand</div>
+                        <div class="visit-date">Visited: January 2023</div>
+                        <div class="country-description">
+                            Incredible temples, delicious street food, and warm hospitality. Bangkok and Phuket were highlights.
+                        </div>
+                        <div class="photo-gallery">
+                            <div class="gallery-thumb">🖼️</div>
+                            <div class="gallery-thumb">🖼️</div>
+                            <div class="gallery-thumb">🖼️</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Country Card 5 -->
+                <div class="country-card">
+                    <div class="country-image">
+                        🇦🇺
+                    </div>
+                    <div class="country-info">
+                        <div class="country-name">Australia</div>
+                        <div class="visit-date">Visited: November 2022</div>
+                        <div class="country-description">
+                            Sydney Opera House, Great Barrier Reef, and unique wildlife. Nature at its finest!
+                        </div>
+                        <div class="photo-gallery">
+                            <div class="gallery-thumb">🖼️</div>
+                            <div class="gallery-thumb">🖼️</div>
+                            <div class="gallery-thumb">🖼️</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize map
+        const map = L.map('map').setView([20, 0], 2);
+
+        // Add base map layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors',
+            maxZoom: 19
+        }).addTo(map);
+
+        // List of visited countries (country name and bounds)
+        const visitedCountries = [
+            { name: 'Japan', bounds: [[45.5, 130], [30, 145]] },
+            { name: 'France', bounds: [[51.5, -5], [42, 8]] },
+            { name: 'United Kingdom', bounds: [[55.8, -7], [49.8, 1.7]] },
+            { name: 'Thailand', bounds: [[20.5, 97.4], [5.6, 105.6]] },
+            { name: 'Australia', bounds: [[-10, 113], [-44, 154]] }
+        ];
+
+        // Add colored rectangles for visited countries
+        visitedCountries.forEach(country => {
+            L.rectangle(country.bounds, {
+                color: '#ffd700',
+                weight: 2,
+                opacity: 0.7,
+                fillColor: '#ffd700',
+                fillOpacity: 0.3
+            }).bindPopup(country.name).addTo(map);
+        });
+
+        // Optional: Add click handlers to country cards
+        document.querySelectorAll('.country-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const countryName = this.querySelector('.country-name').textContent;
+                console.log('Clicked:', countryName);
+            });
+        });
+    </script>
+</body>
+</html>
